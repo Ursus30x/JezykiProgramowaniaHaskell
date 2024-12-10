@@ -1,7 +1,7 @@
 ### 23) 
 Dla danej liczby naturalnej n podaj największą, jeśli istnieje, parę liczb zaprzyjaźnionych a i b
 takich, że a≤ n, b≤ n.
-- [ ] zrobione
+- [x] zrobione (ale brutem)
 
 ### 33)
 Dla podanej liczby wymiernej 0 ≤ p ≤ 0.99 podaj najmniejszą liczbę n taką że p jest mniejsze niż
