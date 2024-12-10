@@ -4,7 +4,6 @@ import Data.Ord (comparing)
 sumaDzielnikow :: Int -> Int
 sumaDzielnikow n = sum [x | x <- [1..n-1], n `mod` x == 0]
 
-
 czySaZaprzyjaznione :: Int -> Int -> Bool
 czySaZaprzyjaznione a b = sumaDzielnikow a == b && sumaDzielnikow b == a
 
@@ -17,6 +16,9 @@ znajdzNajwiekszaZaprzyjaznionaLiczbe n =
     in if null zaprzyjaznione
         then Nothing
         else Just (maximumBy(comparing fst) zaprzyjaznione)
+
+
+--- mozemy sprowbowac tez to zrobic szukajac powtarzajacych sie krotek bo to dziala giga wolno, a tamto moze bedzie lepsze???
 
 main :: IO()
 main = do
