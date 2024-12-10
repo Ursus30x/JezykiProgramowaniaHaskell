@@ -11,9 +11,6 @@ czySaZaprzyjaznione a b = sumaDzielnikow a == b && sumaDzielnikow b == a
 listaSumDzielnikow :: Int -> [(Int, Int)]
 listaSumDzielnikow n = [(a, sumaDzielnikow a) | a <- [1..n], a /= sumaDzielnikow a, sumaDzielnikow a < n]
 
-czyDrugaMniejszOdN :: (Int,Int) -> Int -> Bool
-czyDrugaMniejszOdN (a,b) n = b < n
-
 znajdzNajwiekszaZaprzyjaznionaLiczbe :: Int -> Maybe (Int,Int)
 znajdzNajwiekszaZaprzyjaznionaLiczbe n = 
     let zaprzyjaznione = filter (uncurry czySaZaprzyjaznione) (listaSumDzielnikow n)
@@ -23,5 +20,7 @@ znajdzNajwiekszaZaprzyjaznionaLiczbe n =
 
 main :: IO()
 main = do
-    let n = 2000
-    print (znajdzNajwiekszaZaprzyjaznionaLiczbe n)
+    putStrLn "Podaj n:"
+    input <- getLine
+    let liczba = read input :: Int
+    print (znajdzNajwiekszaZaprzyjaznionaLiczbe liczba)
