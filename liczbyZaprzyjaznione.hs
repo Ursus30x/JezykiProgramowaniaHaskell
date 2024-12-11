@@ -26,9 +26,6 @@ findLargestAmicableNumber n =
         then Nothing
         else Just (findMaxTuple amicablePairs)
 
-
---- mozemy sprowbowac tez to zrobic szukajac powtarzajacych sie krotek bo to dziala giga wolno, a tamto moze bedzie lepsze???
-
 main :: IO()
 main = do
     putStrLn "Podaj n:"
