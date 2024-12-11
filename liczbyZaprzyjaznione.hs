@@ -1,21 +1,30 @@
-import Data.List (find, maximumBy)
-import Data.Ord (comparing)
+find :: (a -> Bool) -> [a] -> Maybe a
+find _ [] = Nothing
+find p (x:xs)
+    | p x       = Just x
+    | otherwise = find p xs
 
-sumaDzielnikow :: Int -> Int
-sumaDzielnikow n = sum [x | x <- [1..n-1], n `mod` x == 0]
+sumOfDivisors :: Int -> Int
+sumOfDivisors n = sum [x | x <- [1..n-1], n `mod` x == 0]
 
-czySaZaprzyjaznione :: Int -> Int -> Bool
-czySaZaprzyjaznione a b = sumaDzielnikow a == b && sumaDzielnikow b == a
+areAmicable :: Int -> Int -> Bool
+areAmicable a b = sumOfDivisors a == b && sumOfDivisors b == a
 
-listaSumDzielnikow :: Int -> [(Int, Int)]
-listaSumDzielnikow n = [(a, sumaDzielnikow a) | a <- [1..n], a /= sumaDzielnikow a, sumaDzielnikow a < n]
+listOfSumOfDivisors :: Int -> [(Int, Int)]
+listOfSumOfDivisors n = [(a, sumOfDivisors a) | a <- [1..n], a /= sumOfDivisors a, sumOfDivisors a < n]
 
-znajdzNajwiekszaZaprzyjaznionaLiczbe :: Int -> Maybe (Int,Int)
-znajdzNajwiekszaZaprzyjaznionaLiczbe n = 
-    let zaprzyjaznione = filter (uncurry czySaZaprzyjaznione) (listaSumDzielnikow n)
-    in if null zaprzyjaznione
+findMaxTuple :: Ord a => [(a, b)] -> (a, b)
+findMaxTuple [] = error "findMaxTuple: empty list"
+findMaxTuple (x:xs) = foldl maxBy x xs
+  where
+    maxBy acc y = if fst y > fst acc then y else acc
+
+findLargestAmicableNumber :: Int -> Maybe (Int, Int)
+findLargestAmicableNumber n = 
+    let amicablePairs = filter (uncurry areAmicable) (listOfSumOfDivisors n)
+    in if null amicablePairs
         then Nothing
-        else Just (maximumBy(comparing fst) zaprzyjaznione)
+        else Just (findMaxTuple amicablePairs)
 
 
 --- mozemy sprowbowac tez to zrobic szukajac powtarzajacych sie krotek bo to dziala giga wolno, a tamto moze bedzie lepsze???
@@ -24,5 +33,5 @@ main :: IO()
 main = do
     putStrLn "Podaj n:"
     input <- getLine
-    let liczba = read input :: Int
-    print (znajdzNajwiekszaZaprzyjaznionaLiczbe liczba)
+    let n = read input :: Int
+    print (findLargestAmicableNumber n)

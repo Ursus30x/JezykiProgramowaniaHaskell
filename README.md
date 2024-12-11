@@ -9,7 +9,7 @@ odsetek wszystkich liczb „niemonotonicznych” w zbiorze liczb całkowitych od
 że liczba jest „monotoniczna” kiedy jej kolejne cyfry nie rosną albo nie maleją w innym przypadku
 liczba jest „niemonotoniczna”. Przykładowo liczby 222, 1334578 i 9962 są „monotoniczne” a 253,
 2286 i 888878 są „niemonotoniczne”. Łatwo zauważyć, że dla m ≤ 100, p = 0.
-- [ ] zrobione
+- [x] zrobione (tez brutem)
 
 ### 48)
 The Chase to gra rozgrywana dwoma kośćmi dla parzystej liczby graczy. Gracze siadają wokół stołu, a gra
